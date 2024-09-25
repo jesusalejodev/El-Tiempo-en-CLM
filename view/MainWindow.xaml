@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Municipios"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Información de Municipios" Height="450" Width="800"
+        Background="SteelBlue" FontFamily="Segoe UI" WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
+        <!-- Plantilla para cada elemento del ListBox -->
         <DataTemplate x:Key="DataTemplateC">
-            <Grid Width="200">
-                <TextBlock Text="{Binding Nombre}" Height="20" Width="180"
-                           TextWrapping="Wrap"
-                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            </Grid>
+            <Border Background="White" CornerRadius="8" Padding="5" Margin="5" BorderBrush="#0078D7" BorderThickness="1">
+                <Grid Width="200">
+                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold" Foreground="#333" FontSize="14"
+                               TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
         </DataTemplate>
     </Window.Resources>
-    <Grid Margin="10">
 
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
@@ -27,52 +31,61 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Título del pueblo seleccionado -->
         <Label Content="Pueblo"
-               FontSize="32"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
+               FontSize="28" FontWeight="Bold"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Row="0" Grid.Column="0"/>
+
+        <!-- Listado de pueblos -->
         <ListBox Grid.Row="1" Grid.Column="0"
                  ItemsSource="{Binding ListaMunicipios}"
                  ItemTemplate="{DynamicResource DataTemplateC}"
-                
-                 SelectedItem="{Binding SelectedMunicipio}"/>
+                 SelectedItem="{Binding SelectedMunicipio}"
+                 Background="LightSteelBlue" BorderBrush="#0078D7" BorderThickness="1"
+                 Padding="5"/>
 
+        <!-- Título del municipio seleccionado -->
         <Label Content="{Binding NombreMunicipio}"
-               FontSize="32"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
+               FontSize="28" FontWeight="Bold"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Row="0" Grid.Column="1"/>
-        
-        <Grid Grid.Row="1" Grid.Column="1">
+
+        <!-- Información detallada del tiempo -->
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Center" Height="50" 
+
+            <!-- Icono del tiempo -->
+            <Image HorizontalAlignment="Center" Height="50"
                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                    Source="{Binding Wicon}"/>
-            <StackPanel Grid.Row="1" Grid.Column="0">
-                <Label Height="40" HorizontalAlignment="Center" Content="TEMP"/>
-                <Label Height="40" HorizontalAlignment="Center" Content="MIN"/>
-                <Label Height="40" HorizontalAlignment="Center" Content="MAX"/>
-                <Label Height="40" HorizontalAlignment="Center" Content="LONG"/>
-                <Label Height="40" HorizontalAlignment="Center" Content="LAT"/>
-                <Label Height="40" HorizontalAlignment="Center" Content="Vs"/>
+
+            <!-- Información de la izquierda -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+                <Label Height="40" HorizontalAlignment="Center" Content="TEMP" FontWeight="Bold"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MIN" FontWeight="Bold"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MAX" FontWeight="Bold"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LONG" FontWeight="Bold"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LAT" FontWeight="Bold"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="Vs" FontWeight="Bold"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp}"/>
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_min}"/>
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_max}"/>
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clon}"/>
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clat}"/>
-                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Wspeed}"/>
+
+            <!-- Información de la derecha -->
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp}" FontSize="14"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_min}" FontSize="14"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_max}" FontSize="14"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clon}" FontSize="14"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clat}" FontSize="14"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Wspeed}" FontSize="14"/>
             </StackPanel>
         </Grid>
-        
     </Grid>
 </Window>
