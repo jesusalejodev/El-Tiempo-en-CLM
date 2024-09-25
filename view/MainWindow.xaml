@@ -1,0 +1,78 @@
+﻿<Window x:Class="Municipios.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Municipios"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="DataTemplateC">
+            <Grid Width="200">
+                <TextBlock Text="{Binding Nombre}" Height="20" Width="180"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Pueblo"
+               FontSize="32"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Row="0" Grid.Column="0"/>
+        <ListBox Grid.Row="1" Grid.Column="0"
+                 ItemsSource="{Binding ListaMunicipios}"
+                 ItemTemplate="{DynamicResource DataTemplateC}"
+                
+                 SelectedItem="{Binding SelectedMunicipio}"/>
+
+        <Label Content="{Binding NombreMunicipio}"
+               FontSize="32"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Row="0" Grid.Column="1"/>
+        
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Center" Height="50" 
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Source="{Binding Wicon}"/>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <Label Height="40" HorizontalAlignment="Center" Content="TEMP"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MIN"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MAX"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LONG"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LAT"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="Vs"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_min}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_max}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clon}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clat}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Wspeed}"/>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
